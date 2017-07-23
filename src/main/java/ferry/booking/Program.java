@@ -19,10 +19,6 @@ public class Program {
 
     public Program(PrintStream out) {
         this.out = out;
-        wireUp();
-    }
-
-    public void wireUp() {
         TimeTables timeTables = new TimeTables();
         Ferries ferries = new Ferries();
         Bookings bookings = new Bookings();
