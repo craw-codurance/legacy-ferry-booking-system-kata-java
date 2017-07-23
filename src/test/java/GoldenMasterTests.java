@@ -13,11 +13,6 @@ import org.junit.Test;
 
 public class GoldenMasterTests {
 
-    //@Test
-    public void generate_golden_master() {
-        writeToFile("master.txt");
-    }
-
     private void writeToFile(String fileName) {
         PrintStream ps = null;
         try {
