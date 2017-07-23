@@ -19,6 +19,7 @@ public class Program {
 
     public Program(PrintStream out) {
         this.out = out;
+        wireUp();
     }
 
     public void wireUp() {
@@ -38,8 +39,6 @@ public class Program {
     }
 
     public void start() {
-
-        wireUp();
 
         out.println("Welcome to the Ferry Finding System");
         out.println("=======");
