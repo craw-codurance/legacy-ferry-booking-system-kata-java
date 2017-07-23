@@ -28,12 +28,14 @@ public class Program {
     }
 
     public static void main(String[] args) {
-        start(System.out);
+        Program program = new Program();
+        program.start(System.out);
         commandLoop();
     }
 
     public static void mainWithTestData(PrintStream ps) {
-        start(ps);
+        Program program = new Program();
+        program.start(ps);
         testCommands();
     }
 
