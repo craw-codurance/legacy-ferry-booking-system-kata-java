@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Program {
 
-    public TimeTableService timeTableService;
+    private TimeTableService timeTableService;
     private JourneyBookingService bookingService;
-    public Ports ports;
+    private Ports ports;
     private FerryAvailabilityService ferryService;
     private PrintStream out;
 
