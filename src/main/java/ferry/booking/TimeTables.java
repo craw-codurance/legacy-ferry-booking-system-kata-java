@@ -35,42 +35,31 @@ public class TimeTables {
 
     public List<TimeTable> all() {
         List<TimeTable> result = new ArrayList<TimeTable>();
+
+        TimeTable timeTable = buildTimeTable(1);
+        result.add(timeTable);
+
+        TimeTable timeTable2 = buildTimeTable(2);
+        result.add(timeTable2);
+
+        TimeTable timeTable3 = buildTimeTable(3);
+        result.add(timeTable3);
+
+        return result;
+    }
+
+    private TimeTable buildTimeTable(int originId) {
         List<TimeTableEntry> timeTableEntries = new ArrayList<TimeTableEntry>();
         for (TimeTableEntry entry : entries) {
-            if (entry.getTimeTableId() == 1) {
+            if (entry.getTimeTableId() == originId) {
                 timeTableEntries.add(entry);
             }
         }
-        addOrigin(timeTableEntries, 1);
+        addOrigin(timeTableEntries, originId);
         TimeTable timeTable = new TimeTable();
-        timeTable.id = 1;
+        timeTable.id = originId;
         timeTable.entries = timeTableEntries;
-        result.add(timeTable);
-
-        List<TimeTableEntry> timeTableEntries2 = new ArrayList<TimeTableEntry>();
-        for (TimeTableEntry entry : entries) {
-            if (entry.getTimeTableId() == 2) {
-                timeTableEntries2.add(entry);
-            }
-        }
-        addOrigin(timeTableEntries2, 2);
-        TimeTable timeTable2 = new TimeTable();
-        timeTable2.id = 2;
-        timeTable2.entries = timeTableEntries2;
-        result.add(timeTable2);
-
-        List<TimeTableEntry> timeTableEntries3 = new ArrayList<TimeTableEntry>();
-        for (TimeTableEntry entry : entries) {
-            if (entry.getTimeTableId() == 3) {
-                timeTableEntries3.add(entry);
-            }
-        }
-        addOrigin(timeTableEntries3, 3);
-        TimeTable timeTable3 = new TimeTable();
-        timeTable3.id = 3;
-        timeTable3.entries = timeTableEntries3;
-        result.add(timeTable3);
-        return result;
+        return timeTable;
     }
 
     private void addOrigin(List<TimeTableEntry> entries, int origin) {
