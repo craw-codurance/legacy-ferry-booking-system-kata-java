@@ -47,7 +47,8 @@ public class SaffSqueeze {
                 + "| 01:40    | Mos Eisley    | 00:35         | Black Pearl        | 02:15    |\n" + "";
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
-        Program.start(ps);
+        Program program = new Program(ps);
+        program.start();
 
         assertEquals(expectedOutput, baos.toString());
     }

@@ -15,7 +15,11 @@ public class Program {
     private static JourneyBookingService bookingService;
     public static Ports ports;
     private static FerryAvailabilityService ferryService;
-    private static PrintStream out;
+    private PrintStream out;
+
+    public Program(PrintStream out) {
+        this.out = out;
+    }
 
     public static void wireUp() {
         TimeTables timeTables = new TimeTables();
@@ -28,19 +32,19 @@ public class Program {
     }
 
     public static void main(String[] args) {
-        Program program = new Program();
-        program.start(System.out);
-        commandLoop();
+        Program program = new Program(System.out);
+        program.start();
+        program.commandLoop();
     }
 
     public static void mainWithTestData(PrintStream ps) {
-        Program program = new Program();
-        program.start(ps);
-        testCommands();
+        Program program = new Program(ps);
+        program.start();
+        program.testCommands();
     }
 
-    public static void start(PrintStream ps) {
-        out = ps;
+    public void start() {
+
         wireUp();
 
         out.println("Welcome to the Ferry Finding System");
@@ -53,7 +57,7 @@ public class Program {
         displayTimetable(allPorts, timeTable);
     }
 
-    private static void testCommands() {
+    private void testCommands() {
         doCommand("help");
         doCommand("list ports");
         doCommand("search 2 3 00:00");
@@ -74,7 +78,7 @@ public class Program {
         doCommand("list bookings");
     }
 
-    public static void displayTimetable(List<Port> ports, List<TimeTableViewModelRow> rows) {
+    public void displayTimetable(List<Port> ports, List<TimeTableViewModelRow> rows) {
         for (Port port : ports) {
             printPortHeader(port.name);
             List<TimeTableViewModelRow> items = new ArrayList<TimeTableViewModelRow>();
@@ -99,7 +103,7 @@ public class Program {
         }
     }
 
-    private static void commandLoop() {
+    private void commandLoop() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line;
         try {
@@ -113,7 +117,7 @@ public class Program {
         }
     }
 
-    private static void doCommand(String command) {
+    private void doCommand(String command) {
         if (command.startsWith("search")) {
             search(command);
         } else if (command.startsWith("book")) {
@@ -152,7 +156,7 @@ public class Program {
         }
     }
 
-    private static void book(String line) {
+    private void book(String line) {
         try {
             String parts[] = line.split(" ");
             int journeyId = Integer.parseInt(parts[1]);
@@ -175,7 +179,7 @@ public class Program {
         }
     }
 
-    private static void search(String line) {
+    private void search(String line) {
         try {
             String parts[] = line.split(" ");
             int originPortId = Integer.parseInt(parts[1]);
@@ -200,7 +204,7 @@ public class Program {
         }
     }
 
-    private static void printPortHeader(String portName) {
+    private void printPortHeader(String portName) {
         out.println();
         out.println("Departures from " + portName);
         out.println();
