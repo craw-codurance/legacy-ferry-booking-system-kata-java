@@ -10,15 +10,15 @@ import java.nio.file.Paths;
 
 public class GoldenMaster {
 
-    public void writeToFile(String fileName) {
-        PrintStream ps = null;
-        try {
-            ps = new PrintStream(new File(fileName));
-            Program.mainWithTestData(ps);
-        } catch (FileNotFoundException e) {
-        } finally {
-            ps.close();
-        }
+    private PrintStream output;
+
+    public GoldenMaster(String outputFileName) throws FileNotFoundException {
+        this.output = new PrintStream(new File(outputFileName));
+    }
+
+    public void run() {
+        Program.mainWithTestData(output);
+        output.close();
     }
 
     public String readFile(String path) throws IOException {
