@@ -10,7 +10,7 @@ public class FerryModule {
             throw new NullPointerException("destination");
         }
 
-        long arrivalTime = timetable.time + timetable.journeyTime;
+        long arrivalTime = timetable.getTime() + timetable.getJourneyTime();
         int turnaroundTime = FerryManager.getFerryTurnaroundTime(destination);
         long timeReady = arrivalTime + turnaroundTime;
         return timeReady;

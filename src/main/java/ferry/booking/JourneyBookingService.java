@@ -27,14 +27,14 @@ public class JourneyBookingService {
 
             @Override
             public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                return Long.compare(tte1.time, tte2.time);
+                return Long.compare(tte1.getTime(), tte2.getTime());
             }
         });
 
         for (TimeTableEntry timetable : allEntries) {
-            Ferry ferry = ferryService.nextFerryAvailableFrom(timetable.originId, timetable.time);
+            Ferry ferry = ferryService.nextFerryAvailableFrom(timetable.getOriginId(), timetable.getTime());
 
-            if (timetable.id == journeyId) {
+            if (timetable.getId() == journeyId) {
                 List<Booking> journeyBookings = new ArrayList<>();
                 for (Booking x : bookings.all()) {
                     if (x.journeyId == journeyId) {

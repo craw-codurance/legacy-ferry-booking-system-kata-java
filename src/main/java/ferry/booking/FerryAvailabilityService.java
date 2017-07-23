@@ -25,7 +25,7 @@ public class FerryAvailabilityService {
 
             @Override
             public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                return Long.compare(tte1.time, tte2.time);
+                return Long.compare(tte1.getTime(), tte2.getTime());
             }
         });
 
@@ -34,8 +34,8 @@ public class FerryAvailabilityService {
             if (ferry != null) {
                 boatReady(entry, ferry.destination, ferry);
             }
-            if (entry.originId == portId) {
-                if (entry.time >= time) {
+            if (entry.getOriginId() == portId) {
+                if (entry.getTime() >= time) {
                     if (ferry != null) {
                         return ferry.ferry;
                     }

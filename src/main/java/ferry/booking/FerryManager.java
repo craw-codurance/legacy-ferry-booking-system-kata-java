@@ -15,10 +15,10 @@ public class FerryManager {
 
         FerryJourney fj = new FerryJourney();
         for (PortModel port : ports) {
-            if (port.id == timetable.originId) {
+            if (port.id == timetable.getOriginId()) {
                 fj.origin = port;
             }
-            if (port.id == timetable.destinationId) {
+            if (port.id == timetable.getDestinationId()) {
                 fj.destination = port;
             }
         }
@@ -26,7 +26,7 @@ public class FerryManager {
     }
 
     public static void addFerry(TimeTableEntry timetable, FerryJourney journey) {
-        journey.ferry = journey.origin.getNextAvailable(timetable.time);
+        journey.ferry = journey.origin.getNextAvailable(timetable.getTime());
     }
 
     public static int getFerryTurnaroundTime(PortModel destination) {

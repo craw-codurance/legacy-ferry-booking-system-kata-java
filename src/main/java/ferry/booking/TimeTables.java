@@ -18,13 +18,14 @@ public class TimeTables {
             JSONArray arr = new JSONArray(json);
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                TimeTableEntry tte = new TimeTableEntry();
-                tte.id = obj.getInt("Id");
-                tte.timeTableId = obj.getInt("TimeTableId");
-                tte.originId = obj.getInt("OriginId");
-                tte.destinationId = obj.getInt("DestinationId");
-                tte.time = obj.getLong("Time");
-                tte.journeyTime = obj.getLong("JourneyTime");
+                TimeTableEntry tte = new TimeTableEntry(
+                        obj.getInt("Id"),
+                        obj.getInt("TimeTableId"),
+                        obj.getInt("OriginId"),
+                        obj.getInt("DestinationId"),
+                        obj.getLong("Time"),
+                        obj.getLong("JourneyTime")
+                );
                 entries.add(tte);
             }
         } catch (Exception e) {
@@ -36,7 +37,7 @@ public class TimeTables {
         List<TimeTable> result = new ArrayList<TimeTable>();
         List<TimeTableEntry> timeTableEntries = new ArrayList<TimeTableEntry>();
         for (TimeTableEntry entry : entries) {
-            if (entry.timeTableId == 1) {
+            if (entry.getTimeTableId() == 1) {
                 timeTableEntries.add(entry);
             }
         }
@@ -48,7 +49,7 @@ public class TimeTables {
 
         List<TimeTableEntry> timeTableEntries2 = new ArrayList<TimeTableEntry>();
         for (TimeTableEntry entry : entries) {
-            if (entry.timeTableId == 2) {
+            if (entry.getTimeTableId() == 2) {
                 timeTableEntries2.add(entry);
             }
         }
@@ -60,7 +61,7 @@ public class TimeTables {
 
         List<TimeTableEntry> timeTableEntries3 = new ArrayList<TimeTableEntry>();
         for (TimeTableEntry entry : entries) {
-            if (entry.timeTableId == 3) {
+            if (entry.getTimeTableId() == 3) {
                 timeTableEntries3.add(entry);
             }
         }
@@ -74,7 +75,7 @@ public class TimeTables {
 
     private void addOrigin(List<TimeTableEntry> entries, int origin) {
         for (TimeTableEntry timeTableEntry : entries) {
-            timeTableEntry.originId = origin;
+            timeTableEntry.setOriginId(origin);
         }
     }
 }
