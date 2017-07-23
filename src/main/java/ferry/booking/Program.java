@@ -36,10 +36,6 @@ public class Program {
 
     public void start() {
 
-        out.println("Welcome to the Ferry Finding System");
-        out.println("=======");
-        out.println("Ferry Time Table");
-
         List<Port> allPorts = ports.all();
         List<TimeTableViewModelRow> timeTable = timeTableService.getTimeTable(allPorts);
 
@@ -47,6 +43,11 @@ public class Program {
     }
 
     public void displayTimetable(List<Port> ports, List<TimeTableViewModelRow> rows) {
+        
+        out.println("Welcome to the Ferry Finding System");
+        out.println("=======");
+        out.println("Ferry Time Table");
+
         for (Port port : ports) {
             printPortHeader(port.name);
             List<TimeTableViewModelRow> items = new ArrayList<TimeTableViewModelRow>();
