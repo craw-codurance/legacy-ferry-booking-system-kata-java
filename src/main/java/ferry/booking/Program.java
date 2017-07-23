@@ -37,12 +37,6 @@ public class Program {
         program.commandLoop();
     }
 
-    public static void mainWithTestData(PrintStream ps) {
-        Program program = new Program(ps);
-        program.start();
-        program.testCommands();
-    }
-
     public void start() {
 
         wireUp();
@@ -55,27 +49,6 @@ public class Program {
         List<TimeTableViewModelRow> timeTable = timeTableService.getTimeTable(allPorts);
 
         displayTimetable(allPorts, timeTable);
-    }
-
-    private void testCommands() {
-        doCommand("help");
-        doCommand("list ports");
-        doCommand("search 2 3 00:00");
-        doCommand("search 2 3 00:00");
-        doCommand("book 10 2");
-        doCommand("search 2 3 00:00");
-        doCommand("book 10 10");
-        doCommand("book 10 1");
-        doCommand("search 1 2 01:00");
-        doCommand("book 4 2");
-        doCommand("book 6 8");
-        doCommand("search 1 2 01:00");
-        doCommand("search 1 3 01:00");
-        doCommand("search 1 3 01:30");
-        doCommand("book 5 16");
-        doCommand("book 16 16");
-        doCommand("search 1 3 00:00");
-        doCommand("list bookings");
     }
 
     public void displayTimetable(List<Port> ports, List<TimeTableViewModelRow> rows) {
@@ -117,7 +90,7 @@ public class Program {
         }
     }
 
-    private void doCommand(String command) {
+    public void doCommand(String command) {
         if (command.startsWith("search")) {
             search(command);
         } else if (command.startsWith("book")) {
