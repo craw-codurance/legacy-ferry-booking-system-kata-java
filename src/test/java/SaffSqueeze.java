@@ -4,10 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import ferry.booking.Program;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SaffSqueeze {
-
+    
+    @Ignore
     @Test
     public void first_saff() {
         String expectedOutput = "Welcome to the Ferry Finding System\n" + "=======\n" + "Ferry Time Table\n" + "\n"
