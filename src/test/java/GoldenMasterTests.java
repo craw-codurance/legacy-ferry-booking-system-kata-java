@@ -13,27 +13,12 @@ import org.junit.Test;
 
 public class GoldenMasterTests {
 
-    private void writeToFile(String fileName) {
-        PrintStream ps = null;
-        try {
-            ps = new PrintStream(new File(fileName));
-            Program.mainWithTestData(ps);
-        } catch (FileNotFoundException e) {
-        } finally {
-            ps.close();
-        }
-    }
-
-    private String readFile(String path) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded, Charset.defaultCharset());
-    }
-
     @Test
     public void compare_to_golden_master() throws IOException {
-        writeToFile("test-run.txt");
-        String master = readFile("master.txt");
-        String tests = readFile("test-run.txt");
+        GoldenMaster goldenMaster = new GoldenMaster();
+        goldenMaster.writeToFile("test-run.txt");
+        String master = goldenMaster.readFile("master.txt");
+        String tests = goldenMaster.readFile("test-run.txt");
         assertEquals(tests, master);
     }
 }
