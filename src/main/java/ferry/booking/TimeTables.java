@@ -36,14 +36,10 @@ public class TimeTables {
     public List<TimeTable> all() {
         List<TimeTable> result = new ArrayList<TimeTable>();
 
-        TimeTable timeTable = buildTimeTable(1);
-        result.add(timeTable);
-
-        TimeTable timeTable2 = buildTimeTable(2);
-        result.add(timeTable2);
-
-        TimeTable timeTable3 = buildTimeTable(3);
-        result.add(timeTable3);
+        for (int i = 0; i < 4; i ++) {
+            TimeTable timeTable = buildTimeTable(i);
+            result.add(timeTable);
+        }
 
         return result;
     }
