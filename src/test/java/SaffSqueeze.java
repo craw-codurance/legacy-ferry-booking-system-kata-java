@@ -8,7 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class SaffSqueeze {
-    
+
     @Ignore
     @Test
     public void first_saff() {

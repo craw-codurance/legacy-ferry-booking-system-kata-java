@@ -15,10 +15,10 @@ public class GoldenMasterTests {
 
     //@Test
     public void generate_golden_master() {
-        WriteToFile("master.txt");
+        writeToFile("master.txt");
     }
 
-    private static void WriteToFile(String fileName) {
+    private static void writeToFile(String fileName) {
         PrintStream ps = null;
         try {
             ps = new PrintStream(new File(fileName));
@@ -36,7 +36,7 @@ public class GoldenMasterTests {
 
     @Test
     public void compare_to_golden_master() throws IOException {
-        WriteToFile("test-run.txt");
+        writeToFile("test-run.txt");
         String master = readFile("master.txt");
         String tests = readFile("test-run.txt");
         assertEquals(tests, master);
