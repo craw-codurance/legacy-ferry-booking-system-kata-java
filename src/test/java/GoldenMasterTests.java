@@ -18,7 +18,7 @@ public class GoldenMasterTests {
         writeToFile("master.txt");
     }
 
-    private static void writeToFile(String fileName) {
+    private void writeToFile(String fileName) {
         PrintStream ps = null;
         try {
             ps = new PrintStream(new File(fileName));
@@ -29,7 +29,7 @@ public class GoldenMasterTests {
         }
     }
 
-    private static String readFile(String path) throws IOException {
+    private String readFile(String path) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.defaultCharset());
     }
