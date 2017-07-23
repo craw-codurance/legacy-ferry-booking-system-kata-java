@@ -11,17 +11,17 @@ import java.util.List;
 
 public class Program {
 
-    public static TimeTableService timeTableService;
-    private static JourneyBookingService bookingService;
-    public static Ports ports;
-    private static FerryAvailabilityService ferryService;
+    public TimeTableService timeTableService;
+    private JourneyBookingService bookingService;
+    public Ports ports;
+    private FerryAvailabilityService ferryService;
     private PrintStream out;
 
     public Program(PrintStream out) {
         this.out = out;
     }
 
-    public static void wireUp() {
+    public void wireUp() {
         TimeTables timeTables = new TimeTables();
         Ferries ferries = new Ferries();
         Bookings bookings = new Bookings();
