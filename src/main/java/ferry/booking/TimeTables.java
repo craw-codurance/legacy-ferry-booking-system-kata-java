@@ -34,7 +34,7 @@ public class TimeTables {
     }
 
     public List<TimeTable> all() {
-        List<TimeTable> result = new ArrayList<TimeTable>();
+        List<TimeTable> result = new ArrayList<>();
 
         for (int i = 0; i < 4; i ++) {
             TimeTable timeTable = buildTimeTable(i);
@@ -45,7 +45,7 @@ public class TimeTables {
     }
 
     private TimeTable buildTimeTable(int originId) {
-        List<TimeTableEntry> timeTableEntries = new ArrayList<TimeTableEntry>();
+        List<TimeTableEntry> timeTableEntries = new ArrayList<>();
         for (TimeTableEntry entry : entries) {
             if (entry.getTimeTableId() == originId) {
                 timeTableEntries.add(entry);
