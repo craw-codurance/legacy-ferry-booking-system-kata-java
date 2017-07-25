@@ -55,7 +55,7 @@ public class TimeTables {
         }
         addOrigin(timeTableEntries, originId);
         TimeTable timeTable = new TimeTable();
-        timeTable.id = originId;
+        timeTable.setId(originId);
         timeTable.entries = timeTableEntries;
         return timeTable;
     }

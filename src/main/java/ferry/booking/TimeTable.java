@@ -4,13 +4,17 @@ import java.util.List;
 
 public class TimeTable {
 
-    public int id;
+    private int id;
     public List<TimeTableEntry> entries;
 
     public TimeTable() {
     }
 
     public TimeTable(int id) {
+        this.id = id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
