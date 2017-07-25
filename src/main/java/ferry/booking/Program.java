@@ -1,5 +1,7 @@
 package ferry.booking;
 
+import ferry.booking.timetable.TimeTables;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

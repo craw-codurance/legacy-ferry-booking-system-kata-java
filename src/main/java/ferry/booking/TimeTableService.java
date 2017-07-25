@@ -1,5 +1,7 @@
 package ferry.booking;
 
+import ferry.booking.timetable.TimeTables;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
