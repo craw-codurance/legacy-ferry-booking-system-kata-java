@@ -7,6 +7,13 @@ public class TimeTable {
     public int id;
     public List<TimeTableEntry> entries;
 
+    public TimeTable() {
+    }
+
+    public TimeTable(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "TimeTable{" +

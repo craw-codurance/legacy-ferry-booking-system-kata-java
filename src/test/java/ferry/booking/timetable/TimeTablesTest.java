@@ -20,13 +20,11 @@ public class TimeTablesTest {
 
     private List<TimeTable> buildExpected() {
         List<TimeTable> expected = new ArrayList<>();
-        TimeTable tt0 = new TimeTable();
-        tt0.id = 0;
+        TimeTable tt0 = new TimeTable(0);
         tt0.entries = new ArrayList<>();
         expected.add(tt0);
 
-        TimeTable tt1 = new TimeTable();
-        tt1.id = 1;
+        TimeTable tt1 = new TimeTable(1);
         tt1.entries = new ArrayList<>();
         tt1.entries.add(new TimeTableEntry(1, 1, 1, 2, 0, 30));
         tt1.entries.add(new TimeTableEntry(16, 1, 1, 3, 10, 45));
@@ -38,8 +36,7 @@ public class TimeTablesTest {
         tt1.entries.add(new TimeTableEntry(7, 1, 1, 2, 100, 30));
         expected.add(tt1);
 
-        TimeTable tt2 = new TimeTable();
-        tt2.id = 2;
+        TimeTable tt2 = new TimeTable(2);
         tt2.entries = new ArrayList<>();
         tt2.entries.add(new TimeTableEntry(8, 2, 2, 1, 10, 30));
         tt2.entries.add(new TimeTableEntry(9, 2, 2, 1, 30, 30));
@@ -51,8 +48,7 @@ public class TimeTablesTest {
         tt2.entries.add(new TimeTableEntry(15, 2, 2, 1, 110, 30));
         expected.add(tt2);
 
-        TimeTable tt3 = new TimeTable();
-        tt3.id = 3;
+        TimeTable tt3 = new TimeTable(3);
         tt3.entries = new ArrayList<>();
         tt3.entries.add(new TimeTableEntry(17, 3, 3, 1, 25, 45));
         tt3.entries.add(new TimeTableEntry(18, 3, 3, 2, 40, 35));
