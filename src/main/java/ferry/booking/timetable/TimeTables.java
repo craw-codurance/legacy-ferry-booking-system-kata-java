@@ -65,4 +65,19 @@ public class TimeTables {
             timeTableEntry.setOriginId(origin);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TimeTables that = (TimeTables) o;
+
+        return entries != null ? entries.equals(that.entries) : that.entries == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return entries != null ? entries.hashCode() : 0;
+    }
 }
