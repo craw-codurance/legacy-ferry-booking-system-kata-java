@@ -1,5 +1,6 @@
 package ferry.booking;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TimeTable {
@@ -12,6 +13,7 @@ public class TimeTable {
 
     public TimeTable(int id) {
         this.id = id;
+        this.entries = new ArrayList<>();
     }
 
     public void setId(int id) {
