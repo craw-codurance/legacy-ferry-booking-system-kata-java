@@ -21,7 +21,7 @@ public class FerryAvailabilityService {
         List<PortModel> ports = portManager.PortModels();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timeTables.all()) {
-            allEntries.addAll(tt.entries);
+            allEntries.addAll(tt.getEntries());
         }
         Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
 

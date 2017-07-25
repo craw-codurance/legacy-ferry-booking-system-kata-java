@@ -23,7 +23,7 @@ public class TimeTableService {
         List<TimeTable> timetables = timeTables.all();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timetables) {
-            allEntries.addAll(tt.entries);
+            allEntries.addAll(tt.getEntries());
         }
         Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
 
@@ -67,7 +67,7 @@ public class TimeTableService {
         List<TimeTable> timetables = timeTables.all();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timetables) {
-            allEntries.addAll(tt.entries);
+            allEntries.addAll(tt.getEntries());
         }
         Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
 

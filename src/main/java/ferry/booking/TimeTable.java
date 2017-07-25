@@ -6,18 +6,27 @@ import java.util.List;
 public class TimeTable {
 
     private int id;
-    public List<TimeTableEntry> entries;
+    private List<TimeTableEntry> entries;
 
     public TimeTable() {
+        this.entries = new ArrayList<>();
     }
 
     public TimeTable(int id) {
+        this();
         this.id = id;
-        this.entries = new ArrayList<>();
+    }
+
+    public List<TimeTableEntry> getEntries() {
+        return entries;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void add(TimeTableEntry timeTableEntry) {
+        this.entries.add(timeTableEntry);
     }
 
     @Override
