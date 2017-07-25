@@ -8,12 +8,8 @@ public class TimeTable {
     private int id;
     private List<TimeTableEntry> entries;
 
-    public TimeTable() {
-        this.entries = new ArrayList<>();
-    }
-
     public TimeTable(int id) {
-        this();
+        this.entries = new ArrayList<>();
         this.id = id;
     }
 
