@@ -13,8 +13,12 @@ public class TimeTablesTest {
 
     @Test
     public void all() throws Exception {
+        List<TimeTable> expected = buildExpected();
         TimeTables timeTables = new TimeTables();
+        assertEquals(expected, timeTables.all());
+    }
 
+    private List<TimeTable> buildExpected() {
         List<TimeTable> expected = new ArrayList<>();
         TimeTable tt0 = new TimeTable();
         tt0.id = 0;
@@ -55,8 +59,7 @@ public class TimeTablesTest {
         tt3.entries.add(new TimeTableEntry(19, 3, 3, 1, 85, 45));
         tt3.entries.add(new TimeTableEntry(20, 3, 3, 2, 100, 35));
         expected.add(tt3);
-
-        assertEquals(expected, timeTables.all());
+        return expected;
     }
 
 }
