@@ -22,7 +22,6 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
                 JSONObject obj = arr.getJSONObject(i);
                 TimeTableEntry tte = new TimeTableEntry(
                         obj.getInt("Id"),
-                        obj.getInt("TimeTableId"),
                         obj.getInt("TimeTableId"), // OriginId = TimeTableId
                         obj.getInt("DestinationId"),
                         obj.getLong("Time"),

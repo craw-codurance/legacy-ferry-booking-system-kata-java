@@ -3,15 +3,13 @@ package ferry.booking;
 public class TimeTableEntry {
 
     private int id;
-    private int timeTableId;
     private int originId;
     private int destinationId;
     private long time;
     private long journeyTime;
 
-    public TimeTableEntry(int id, int timeTableId, int originId, int destinationId, long time, long journeyTime) {
+    public TimeTableEntry(int id, int originId, int destinationId, long time, long journeyTime) {
         this.id = id;
-        this.timeTableId = timeTableId;
         this.originId = originId;
         this.destinationId = destinationId;
         this.time = time;
@@ -42,7 +40,6 @@ public class TimeTableEntry {
     public String toString() {
         return "TimeTableEntry{" +
                 "id=" + id +
-                ", timeTableId=" + timeTableId +
                 ", originId=" + originId +
                 ", destinationId=" + destinationId +
                 ", time=" + time +
@@ -58,7 +55,6 @@ public class TimeTableEntry {
         TimeTableEntry that = (TimeTableEntry) o;
 
         if (id != that.id) return false;
-        if (timeTableId != that.timeTableId) return false;
         if (originId != that.originId) return false;
         if (destinationId != that.destinationId) return false;
         if (time != that.time) return false;
@@ -68,7 +64,6 @@ public class TimeTableEntry {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + timeTableId;
         result = 31 * result + originId;
         result = 31 * result + destinationId;
         result = 31 * result + (int) (time ^ (time >>> 32));
