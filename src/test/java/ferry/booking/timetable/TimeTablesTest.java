@@ -14,7 +14,7 @@ public class TimeTablesTest {
     @Test
     public void all() throws Exception {
         List<TimeTable> expected = buildExpected();
-        TimeTables timeTables = new TimeTables();
+        TimeTableRepository timeTables = new TimeTables();
         assertEquals(expected, timeTables.all());
     }
 

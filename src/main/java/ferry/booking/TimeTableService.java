@@ -1,6 +1,6 @@
 package ferry.booking;
 
-import ferry.booking.timetable.TimeTables;
+import ferry.booking.timetable.TimeTableRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,18 +9,18 @@ import java.util.List;
 
 public class TimeTableService {
 
-    private final TimeTables timeTables;
+    private final TimeTableRepository timeTableRepository;
     private final Bookings bookings;
     private final FerryAvailabilityService ferryService;
 
-    public TimeTableService(TimeTables timeTables, Bookings bookings, FerryAvailabilityService ferryService) {
-        this.timeTables = timeTables;
+    public TimeTableService(TimeTableRepository timeTableRepository, Bookings bookings, FerryAvailabilityService ferryService) {
+        this.timeTableRepository = timeTableRepository;
         this.bookings = bookings;
         this.ferryService = ferryService;
     }
 
     public List<TimeTableViewModelRow> getTimeTable(List<Port> ports) {
-        List<TimeTable> timetables = timeTables.all();
+        List<TimeTable> timetables = timeTableRepository.all();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timetables) {
             allEntries.addAll(tt.getEntries());
@@ -64,7 +64,7 @@ public class TimeTableService {
 
     public List<AvailableCrossing> getAvailableCrossings(long time, int fromPort, int toPort) {
         List<Port> ports = new Ports().all();
-        List<TimeTable> timetables = timeTables.all();
+        List<TimeTable> timetables = timeTableRepository.all();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timetables) {
             allEntries.addAll(tt.getEntries());

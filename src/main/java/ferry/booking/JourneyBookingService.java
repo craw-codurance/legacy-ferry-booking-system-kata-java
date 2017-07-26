@@ -1,6 +1,6 @@
 package ferry.booking;
 
-import ferry.booking.timetable.TimeTables;
+import ferry.booking.timetable.TimeTableRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,18 +9,18 @@ import java.util.List;
 
 public class JourneyBookingService {
 
-    private TimeTables timeTables;
+    private TimeTableRepository timeTableRepository;
     private Bookings bookings;
     private final FerryAvailabilityService ferryService;
 
-    public JourneyBookingService(TimeTables timeTables, Bookings bookings, FerryAvailabilityService ferryService) {
-        this.timeTables = timeTables;
+    public JourneyBookingService(TimeTableRepository timeTableRepository, Bookings bookings, FerryAvailabilityService ferryService) {
+        this.timeTableRepository = timeTableRepository;
         this.bookings = bookings;
         this.ferryService = ferryService;
     }
 
     public boolean canBook(int journeyId, int passengers) {
-        List<TimeTable> timetables = timeTables.all();
+        List<TimeTable> timetables = timeTableRepository.all();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
         for (TimeTable tt : timetables) {
             allEntries.addAll(tt.getEntries());

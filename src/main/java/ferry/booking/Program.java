@@ -1,5 +1,6 @@
 package ferry.booking;
 
+import ferry.booking.timetable.TimeTableRepository;
 import ferry.booking.timetable.TimeTables;
 
 import java.io.BufferedReader;
@@ -21,13 +22,13 @@ public class Program {
 
     public Program(PrintStream out) {
         this.out = out;
-        TimeTables timeTables = new TimeTables();
+        TimeTableRepository timeTableRepository = new TimeTables();
         Ferries ferries = new Ferries();
         Bookings bookings = new Bookings();
         ports = new Ports();
-        ferryService = new FerryAvailabilityService(timeTables, new PortManager(ports, ferries));
-        bookingService = new JourneyBookingService(timeTables, bookings, ferryService);
-        timeTableService = new TimeTableService(timeTables, bookings, ferryService);
+        ferryService = new FerryAvailabilityService(timeTableRepository, new PortManager(ports, ferries));
+        bookingService = new JourneyBookingService(timeTableRepository, bookings, ferryService);
+        timeTableService = new TimeTableService(timeTableRepository, bookings, ferryService);
     }
 
     public static void main(String[] args) {

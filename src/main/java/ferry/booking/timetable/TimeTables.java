@@ -10,7 +10,7 @@ import java.util.List;
 
 import static ferry.booking.Util.readFileToString;
 
-public class TimeTables {
+public class TimeTables implements TimeTableRepository {
 
     private final List<TimeTableEntry> entries = new ArrayList<>();
 
@@ -35,6 +35,7 @@ public class TimeTables {
         }
     }
 
+    @Override
     public List<TimeTable> all() {
         List<TimeTable> result = new ArrayList<>();
 

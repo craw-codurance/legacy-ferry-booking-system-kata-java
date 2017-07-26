@@ -1,6 +1,6 @@
 package ferry.booking;
 
-import ferry.booking.timetable.TimeTables;
+import ferry.booking.timetable.TimeTableRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,18 +9,18 @@ import java.util.List;
 
 public class FerryAvailabilityService {
 
-    private final TimeTables timeTables;
+    private final TimeTableRepository timeTableRepository;
     private final PortManager portManager;
 
-    public FerryAvailabilityService(TimeTables timeTables, PortManager portManager) {
-        this.timeTables = timeTables;
+    public FerryAvailabilityService(TimeTableRepository timeTableRepository, PortManager portManager) {
+        this.timeTableRepository = timeTableRepository;
         this.portManager = portManager;
     }
 
     public Ferry nextFerryAvailableFrom(int portId, long time) {
         List<PortModel> ports = portManager.PortModels();
         List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
-        for (TimeTable tt : timeTables.all()) {
+        for (TimeTable tt : timeTableRepository.all()) {
             allEntries.addAll(tt.getEntries());
         }
         Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
