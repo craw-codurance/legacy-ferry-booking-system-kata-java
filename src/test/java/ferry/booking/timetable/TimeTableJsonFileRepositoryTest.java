@@ -20,8 +20,6 @@ public class TimeTableJsonFileRepositoryTest {
 
     private List<TimeTable> buildExpected() {
         List<TimeTable> expected = new ArrayList<>();
-        TimeTable tt0 = new TimeTable(0);
-        expected.add(tt0);
 
         TimeTable tt1 = new TimeTable(1);
         tt1.add(new TimeTableEntry(1, 1, 2, 0, 30));

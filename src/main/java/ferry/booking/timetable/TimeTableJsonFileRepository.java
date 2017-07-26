@@ -6,13 +6,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static ferry.booking.Util.readFileToString;
 
 public class TimeTableJsonFileRepository implements TimeTableRepository {
 
-    private final List<TimeTableEntry> entries = new ArrayList<>();
+    private final Map<Integer, TimeTable> timeTables = new HashMap<>();
 
     public TimeTableJsonFileRepository() {
         try {
@@ -27,7 +29,12 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
                         obj.getLong("Time"),
                         obj.getLong("JourneyTime")
                 );
-                entries.add(tte);
+                TimeTable timeTable = timeTables.get(obj.getInt("TimeTableId"));
+                if (timeTable == null) {
+                    timeTable = new TimeTable(obj.getInt("TimeTableId"));
+                    timeTables.put(obj.getInt("TimeTableId"), timeTable);
+                }
+                timeTable.add(tte);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,28 +43,7 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
 
     @Override
     public List<TimeTable> all() {
-        List<TimeTable> result = new ArrayList<>();
-
-        for (int i = 0; i < 4; i ++) {
-            TimeTable timeTable = buildTimeTable(i);
-            result.add(timeTable);
-        }
-
-        return result;
-    }
-
-    private TimeTable buildTimeTable(int originId) {
-        List<TimeTableEntry> timeTableEntries = new ArrayList<>();
-        for (TimeTableEntry entry : entries) {
-            if (entry.getOriginId() == originId) {
-                timeTableEntries.add(entry);
-            }
-        }
-        TimeTable timeTable = new TimeTable(originId);
-        for (TimeTableEntry entry : timeTableEntries) {
-            timeTable.add(entry);
-        }
-        return timeTable;
+        return new ArrayList<>(timeTables.values());
     }
 
     @Override
@@ -67,11 +53,11 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
 
         TimeTableJsonFileRepository that = (TimeTableJsonFileRepository) o;
 
-        return entries != null ? entries.equals(that.entries) : that.entries == null;
+        return timeTables != null ? timeTables.equals(that.timeTables) : that.timeTables == null;
     }
 
     @Override
     public int hashCode() {
-        return entries != null ? entries.hashCode() : 0;
+        return timeTables != null ? timeTables.hashCode() : 0;
     }
 }
