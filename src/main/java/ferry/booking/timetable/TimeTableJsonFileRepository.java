@@ -23,7 +23,7 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
                 TimeTableEntry tte = new TimeTableEntry(
                         obj.getInt("Id"),
                         obj.getInt("TimeTableId"),
-                        obj.getInt("OriginId"),
+                        obj.getInt("TimeTableId"), // OriginId = TimeTableId
                         obj.getInt("DestinationId"),
                         obj.getLong("Time"),
                         obj.getLong("JourneyTime")
@@ -50,22 +50,15 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
     private TimeTable buildTimeTable(int originId) {
         List<TimeTableEntry> timeTableEntries = new ArrayList<>();
         for (TimeTableEntry entry : entries) {
-            if (entry.getTimeTableId() == originId) {
+            if (entry.getOriginId() == originId) {
                 timeTableEntries.add(entry);
             }
         }
-        addOrigin(timeTableEntries, originId);
         TimeTable timeTable = new TimeTable(originId);
         for (TimeTableEntry entry : timeTableEntries) {
             timeTable.add(entry);
         }
         return timeTable;
-    }
-
-    private void addOrigin(List<TimeTableEntry> entries, int origin) {
-        for (TimeTableEntry timeTableEntry : entries) {
-            timeTableEntry.setOriginId(origin);
-        }
     }
 
     @Override
