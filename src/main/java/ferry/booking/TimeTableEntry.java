@@ -22,14 +22,6 @@ public class TimeTableEntry {
         return originId;
     }
 
-    public void setOriginId(int originId) {
-        this.originId = originId;
-    }
-
-    public int getTimeTableId() {
-        return timeTableId;
-    }
-
     public int getDestinationId() {
         return destinationId;
     }
