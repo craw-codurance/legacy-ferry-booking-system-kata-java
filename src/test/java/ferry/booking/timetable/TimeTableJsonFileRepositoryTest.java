@@ -9,12 +9,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TimeTablesTest {
+public class TimeTableJsonFileRepositoryTest {
 
     @Test
     public void all() throws Exception {
         List<TimeTable> expected = buildExpected();
-        TimeTableRepository timeTables = new TimeTables();
+        TimeTableRepository timeTables = new TimeTableJsonFileRepository();
         assertEquals(expected, timeTables.all());
     }
 

@@ -10,11 +10,11 @@ import java.util.List;
 
 import static ferry.booking.Util.readFileToString;
 
-public class TimeTables implements TimeTableRepository {
+public class TimeTableJsonFileRepository implements TimeTableRepository {
 
     private final List<TimeTableEntry> entries = new ArrayList<>();
 
-    public TimeTables() {
+    public TimeTableJsonFileRepository() {
         try {
             String json = readFileToString("/timetable.txt");
             JSONArray arr = new JSONArray(json);
@@ -73,7 +73,7 @@ public class TimeTables implements TimeTableRepository {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TimeTables that = (TimeTables) o;
+        TimeTableJsonFileRepository that = (TimeTableJsonFileRepository) o;
 
         return entries != null ? entries.equals(that.entries) : that.entries == null;
     }
