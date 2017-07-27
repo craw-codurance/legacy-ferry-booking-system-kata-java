@@ -18,7 +18,6 @@ public class Program {
     private TimeTableService timeTableService;
     private JourneyBookingService bookingService;
     private Ports ports;
-    private FerryAvailabilityService ferryService;
     private PrintStream out;
     private AvailableCrossingService availableCrossingService;
 
@@ -28,7 +27,7 @@ public class Program {
         Ferries ferries = new Ferries();
         Bookings bookings = new Bookings();
         ports = new Ports();
-        ferryService = new FerryAvailabilityService(timeTableRepository, new PortManager(ports, ferries));
+        FerryAvailabilityService ferryService = new FerryAvailabilityService(timeTableRepository, new PortManager(ports, ferries));
         bookingService = new JourneyBookingService(timeTableRepository, bookings, ferryService);
         timeTableService = new TimeTableService(timeTableRepository, ferryService);
         availableCrossingService = new AvailableCrossingService(timeTableService, bookings, ferryService);
