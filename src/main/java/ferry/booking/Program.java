@@ -1,5 +1,6 @@
 package ferry.booking;
 
+import ferry.booking.crossing.AvailableCrossingService;
 import ferry.booking.timetable.TimeTableEntryRepository;
 import ferry.booking.timetable.TimeTableEntryJsonFileRepository;
 
@@ -19,6 +20,7 @@ public class Program {
     private Ports ports;
     private FerryAvailabilityService ferryService;
     private PrintStream out;
+    private AvailableCrossingService availableCrossingService;
 
     public Program(PrintStream out) {
         this.out = out;
@@ -28,7 +30,8 @@ public class Program {
         ports = new Ports();
         ferryService = new FerryAvailabilityService(timeTableRepository, new PortManager(ports, ferries));
         bookingService = new JourneyBookingService(timeTableRepository, bookings, ferryService);
-        timeTableService = new TimeTableService(timeTableRepository, bookings, ferryService);
+        timeTableService = new TimeTableService(timeTableRepository, ferryService);
+        availableCrossingService = new AvailableCrossingService(timeTableService, bookings, ferryService);
     }
 
     public static void main(String[] args) {
@@ -159,7 +162,7 @@ public class Program {
             String mins[] = parts[3].split(":");
             long time = Long.parseLong(mins[0]) * 60 + Long.parseLong(mins[1]);
 
-            List<AvailableCrossing> search = timeTableService.getAvailableCrossings(time, originPortId,
+            List<AvailableCrossing> search = availableCrossingService.getAvailableCrossings(time, originPortId,
                     destinationPortId);
 
             for (AvailableCrossing result : search) {
