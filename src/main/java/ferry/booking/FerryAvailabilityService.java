@@ -21,25 +21,14 @@ public class FerryAvailabilityService {
 
     public Ferry nextFerryAvailableFrom(int portId, long time) {
         List<PortModel> ports = portManager.PortModels();
-        List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
-        for (TimeTable tt : timeTableRepository.all()) {
-            allEntries.addAll(tt.getEntries());
-        }
-        Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
 
-            @Override
-            public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                return Long.compare(tte1.getTime(), tte2.getTime());
-            }
-        });
-
-        for (TimeTableEntry entry : allEntries) {
-            FerryJourney ferry = FerryManager.createFerryJourney(ports, entry);
+        for (TimeTableEntry timeTableEntry : timeTableRepository.all()) {
+            FerryJourney ferry = FerryManager.createFerryJourney(ports, timeTableEntry);
             if (ferry != null) {
-                boatReady(entry, ferry.destination, ferry);
+                boatReady(timeTableEntry, ferry.destination, ferry);
             }
-            if (entry.getOriginId() == portId) {
-                if (entry.getTime() >= time) {
+            if (timeTableEntry.getOriginId() == portId) {
+                if (timeTableEntry.getTime() >= time) {
                     if (ferry != null) {
                         return ferry.ferry;
                     }

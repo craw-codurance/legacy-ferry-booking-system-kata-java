@@ -4,15 +4,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import static ferry.booking.Util.readFileToString;
 
 public class TimeTableJsonFileRepository implements TimeTableRepository {
 
-    private final Map<Integer, TimeTable> timeTables = new HashMap<>();
+    private final List<TimeTableEntry> timeTableEntries = new ArrayList<>();
 
     public TimeTableJsonFileRepository() {
         try {
@@ -27,12 +27,14 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
                         obj.getLong("Time"),
                         obj.getLong("JourneyTime")
                 );
-                TimeTable timeTable = timeTables.get(obj.getInt("TimeTableId"));
-                if (timeTable == null) {
-                    timeTable = new TimeTable(obj.getInt("TimeTableId"));
-                    timeTables.put(obj.getInt("TimeTableId"), timeTable);
-                }
-                timeTable.add(tte);
+                timeTableEntries.add(tte);
+                Collections.sort(this.timeTableEntries, new Comparator<TimeTableEntry>() {
+
+                    @Override
+                    public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
+                        return Long.compare(tte1.getTime(), tte2.getTime());
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,8 +42,8 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
     }
 
     @Override
-    public List<TimeTable> all() {
-        return new ArrayList<>(timeTables.values());
+    public List<TimeTableEntry> all() {
+        return this.timeTableEntries;
     }
 
     @Override
@@ -51,11 +53,11 @@ public class TimeTableJsonFileRepository implements TimeTableRepository {
 
         TimeTableJsonFileRepository that = (TimeTableJsonFileRepository) o;
 
-        return timeTables != null ? timeTables.equals(that.timeTables) : that.timeTables == null;
+        return timeTableEntries != null ? timeTableEntries.equals(that.timeTableEntries) : that.timeTableEntries == null;
     }
 
     @Override
     public int hashCode() {
-        return timeTables != null ? timeTables.hashCode() : 0;
+        return timeTableEntries != null ? timeTableEntries.hashCode() : 0;
     }
 }

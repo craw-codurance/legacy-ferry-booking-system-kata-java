@@ -1,12 +1,9 @@
 package ferry.booking;
 
-import ferry.booking.timetable.TimeTable;
 import ferry.booking.timetable.TimeTableEntry;
 import ferry.booking.timetable.TimeTableRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class JourneyBookingService {
@@ -22,23 +19,11 @@ public class JourneyBookingService {
     }
 
     public boolean canBook(int journeyId, int passengers) {
-        List<TimeTable> timetables = timeTableRepository.all();
-        List<TimeTableEntry> allEntries = new ArrayList<TimeTableEntry>();
-        for (TimeTable tt : timetables) {
-            allEntries.addAll(tt.getEntries());
-        }
-        Collections.sort(allEntries, new Comparator<TimeTableEntry>() {
 
-            @Override
-            public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                return Long.compare(tte1.getTime(), tte2.getTime());
-            }
-        });
+        for (TimeTableEntry timetableEntry : timeTableRepository.all()) {
+            Ferry ferry = ferryService.nextFerryAvailableFrom(timetableEntry.getOriginId(), timetableEntry.getTime());
 
-        for (TimeTableEntry timetable : allEntries) {
-            Ferry ferry = ferryService.nextFerryAvailableFrom(timetable.getOriginId(), timetable.getTime());
-
-            if (timetable.getId() == journeyId) {
+            if (timetableEntry.getId() == journeyId) {
                 List<Booking> journeyBookings = new ArrayList<>();
                 for (Booking x : bookings.all()) {
                     if (x.journeyId == journeyId) {
