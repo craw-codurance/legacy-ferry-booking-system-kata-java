@@ -8,12 +8,12 @@ import java.util.List;
 
 public class TimeTableService {
 
-    private final TimeTableEntryRepository timeTableRepository;
+    private final TimeTableEntryRepository timeTableEntryRepository;
     private final Bookings bookings;
     private final FerryAvailabilityService ferryService;
 
-    public TimeTableService(TimeTableEntryRepository timeTableRepository, Bookings bookings, FerryAvailabilityService ferryService) {
-        this.timeTableRepository = timeTableRepository;
+    public TimeTableService(TimeTableEntryRepository timeTableEntryRepository, Bookings bookings, FerryAvailabilityService ferryService) {
+        this.timeTableEntryRepository = timeTableEntryRepository;
         this.bookings = bookings;
         this.ferryService = ferryService;
     }
@@ -22,7 +22,7 @@ public class TimeTableService {
 
         List<TimeTableViewModelRow> rows = new ArrayList<TimeTableViewModelRow>();
 
-        for (TimeTableEntry timetableEntry : timeTableRepository.all()) {
+        for (TimeTableEntry timetableEntry : timeTableEntryRepository.all()) {
             Port origin = null;
             Port destination = null;
             for (Port x : ports) {
@@ -54,7 +54,7 @@ public class TimeTableService {
 
         List<AvailableCrossing> result = new ArrayList<AvailableCrossing>();
 
-        for (TimeTableEntry timetableEntry : timeTableRepository.all()) {
+        for (TimeTableEntry timetableEntry : timeTableEntryRepository.all()) {
             Port origin = null;
             Port destination = null;
             for (Port x : ports) {
