@@ -16,11 +16,7 @@ public class TimeTable {
     public List<TimeTableEntry> getEntries() {
         return entries;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public void add(TimeTableEntry timeTableEntry) {
         this.entries.add(timeTableEntry);
     }
