@@ -1,7 +1,5 @@
 package ferry.booking.timetable;
 
-import ferry.booking.TimeTable;
-import ferry.booking.TimeTableEntry;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

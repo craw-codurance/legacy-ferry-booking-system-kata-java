@@ -1,5 +1,7 @@
 package ferry.booking;
 
+import ferry.booking.timetable.TimeTable;
+import ferry.booking.timetable.TimeTableEntry;
 import ferry.booking.timetable.TimeTableRepository;
 
 import java.util.ArrayList;
