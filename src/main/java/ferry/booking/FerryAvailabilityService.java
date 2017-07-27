@@ -1,16 +1,16 @@
 package ferry.booking;
 
 import ferry.booking.timetable.TimeTableEntry;
-import ferry.booking.timetable.TimeTableRepository;
+import ferry.booking.timetable.TimeTableEntryRepository;
 
 import java.util.List;
 
 public class FerryAvailabilityService {
 
-    private final TimeTableRepository timeTableRepository;
+    private final TimeTableEntryRepository timeTableRepository;
     private final PortManager portManager;
 
-    public FerryAvailabilityService(TimeTableRepository timeTableRepository, PortManager portManager) {
+    public FerryAvailabilityService(TimeTableEntryRepository timeTableRepository, PortManager portManager) {
         this.timeTableRepository = timeTableRepository;
         this.portManager = portManager;
     }

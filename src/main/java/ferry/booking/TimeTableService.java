@@ -1,18 +1,18 @@
 package ferry.booking;
 
 import ferry.booking.timetable.TimeTableEntry;
-import ferry.booking.timetable.TimeTableRepository;
+import ferry.booking.timetable.TimeTableEntryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TimeTableService {
 
-    private final TimeTableRepository timeTableRepository;
+    private final TimeTableEntryRepository timeTableRepository;
     private final Bookings bookings;
     private final FerryAvailabilityService ferryService;
 
-    public TimeTableService(TimeTableRepository timeTableRepository, Bookings bookings, FerryAvailabilityService ferryService) {
+    public TimeTableService(TimeTableEntryRepository timeTableRepository, Bookings bookings, FerryAvailabilityService ferryService) {
         this.timeTableRepository = timeTableRepository;
         this.bookings = bookings;
         this.ferryService = ferryService;

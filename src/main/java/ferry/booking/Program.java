@@ -1,7 +1,7 @@
 package ferry.booking;
 
-import ferry.booking.timetable.TimeTableRepository;
-import ferry.booking.timetable.TimeTableJsonFileRepository;
+import ferry.booking.timetable.TimeTableEntryRepository;
+import ferry.booking.timetable.TimeTableEntryJsonFileRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class Program {
 
     public Program(PrintStream out) {
         this.out = out;
-        TimeTableRepository timeTableRepository = new TimeTableJsonFileRepository();
+        TimeTableEntryRepository timeTableRepository = new TimeTableEntryJsonFileRepository();
         Ferries ferries = new Ferries();
         Bookings bookings = new Bookings();
         ports = new Ports();

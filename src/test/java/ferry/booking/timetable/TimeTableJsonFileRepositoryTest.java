@@ -14,7 +14,7 @@ public class TimeTableJsonFileRepositoryTest {
     @Test
     public void all() throws Exception {
         List<TimeTableEntry> expected = buildExpected();
-        TimeTableRepository timeTables = new TimeTableJsonFileRepository();
+        TimeTableEntryRepository timeTables = new TimeTableEntryJsonFileRepository();
         assertEquals(expected, timeTables.all());
     }
 

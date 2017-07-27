@@ -2,6 +2,6 @@ package ferry.booking.timetable;
 
 import java.util.List;
 
-public interface TimeTableRepository {
+public interface TimeTableEntryRepository {
     List<TimeTableEntry> all();
 }
