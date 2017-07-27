@@ -42,14 +42,6 @@ public class TimeTableJsonFileRepositoryTest {
         expected.add(new TimeTableEntry(19, 3, 1, 85, 45));
         expected.add(new TimeTableEntry(20, 3, 2, 100, 35));
 
-        Collections.sort(expected, new Comparator<TimeTableEntry>() {
-
-            @Override
-            public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                return Long.compare(tte1.getTime(), tte2.getTime());
-            }
-        });
-
         return expected;
     }
 

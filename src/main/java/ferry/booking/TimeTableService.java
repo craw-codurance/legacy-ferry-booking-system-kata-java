@@ -4,6 +4,8 @@ import ferry.booking.timetable.TimeTableEntry;
 import ferry.booking.timetable.TimeTableEntryRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class TimeTableService {
@@ -22,7 +24,7 @@ public class TimeTableService {
 
         List<TimeTableViewModelRow> rows = new ArrayList<TimeTableViewModelRow>();
 
-        for (TimeTableEntry timetableEntry : timeTableEntryRepository.all()) {
+        for (TimeTableEntry timetableEntry : getEntriesSortedByTime()) {
             Port origin = null;
             Port destination = null;
             for (Port x : ports) {
@@ -49,12 +51,24 @@ public class TimeTableService {
         return rows;
     }
 
+    private List<TimeTableEntry> getEntriesSortedByTime() {
+        List<TimeTableEntry> timeTableEntries = timeTableEntryRepository.all();
+        Collections.sort(timeTableEntries, new Comparator<TimeTableEntry>() {
+
+            @Override
+            public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
+                return Long.compare(tte1.getTime(), tte2.getTime());
+            }
+        });
+        return timeTableEntries;
+    }
+
     public List<AvailableCrossing> getAvailableCrossings(long time, int fromPort, int toPort) {
         List<Port> ports = new Ports().all();
 
         List<AvailableCrossing> result = new ArrayList<AvailableCrossing>();
 
-        for (TimeTableEntry timetableEntry : timeTableEntryRepository.all()) {
+        for (TimeTableEntry timetableEntry : getEntriesSortedByTime()) {
             Port origin = null;
             Port destination = null;
             for (Port x : ports) {

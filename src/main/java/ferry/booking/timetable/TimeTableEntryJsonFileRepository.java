@@ -28,13 +28,6 @@ public class TimeTableEntryJsonFileRepository implements TimeTableEntryRepositor
                         obj.getLong("JourneyTime")
                 );
                 timeTableEntries.add(tte);
-                Collections.sort(this.timeTableEntries, new Comparator<TimeTableEntry>() {
-
-                    @Override
-                    public int compare(TimeTableEntry tte1, TimeTableEntry tte2) {
-                        return Long.compare(tte1.getTime(), tte2.getTime());
-                    }
-                });
             }
         } catch (Exception e) {
             e.printStackTrace();
